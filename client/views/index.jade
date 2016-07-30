@@ -1,0 +1,13 @@
+var top_level = #{top_level}
+
+extends layout
+
+block content
+  h1 What interests you? 
+    ul(class="mdl-list")
+    each val, index in top_level
+      li(class="mdl-list__item")
+        span(class="mdl-list__item-primary-content")
+            i(class="material-icons mdl-list__item-icon") launch
+            a(href='/'+ val.slug) #{val.description}
+

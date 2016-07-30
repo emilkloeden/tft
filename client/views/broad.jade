@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h3 Lets expand on that a little...
+  ul(class="mdl-list")
+    each val, index in broad
+      li(class="mdl-list__item")
+        span(class="mdl-list__item-primary-content")
+            i(class="material-icons mdl-list__item-icon") launch
+            a(href="./" + val['broad_code']) #{val['broad_description']}
+        

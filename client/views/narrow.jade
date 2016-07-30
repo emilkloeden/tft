@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  p ...maybe just a little further...
+    ul(class="mdl-list")
+    each val, index in narrow
+      li(class="mdl-list__item")
+        span(class="mdl-list__item-primary-content")
+            i(class="material-icons mdl-list__item-icon") launch
+            a(href="./" + val['code']) #{val['description']}
+        

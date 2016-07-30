@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    if courses.length
+        h3 Try one of these:
+        div.mdl-grid
+        each course, index in courses
+            div(class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp")
+                div.mdl-card__title
+                    a(href="/course/" + course['TAFE_SA_code']) 
+                        h5.mdl-card__title-text #{course['Course Name']}
+                div.mdl-card__supporting-text
+                    p <strong>Study Mode</strong> #{course['Study Mode']}
+                    p <strong>Campus</strong> #{course['Campus']}
+    else
+        p.
+            Oh snap! There are no courses available under this topic
