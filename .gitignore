@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 # My ignores
-iPython Notebooks
+# iPython Notebooks
 .DS_Store
 
 server/.env
