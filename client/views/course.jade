@@ -1,18 +1,27 @@
-var course = #{course}
 extends layout
 
 block content
-  h3 #{course['Course Name']}
-  h6 (#{course['Study Mode']})
-  h5 Where
-    if course['Study Place'] == "Online"
-        p Online
-    else
-        p #{course['Campus']}
-  h5 When
-  p Commencing #{course['Semester']}, for #{course['Duration Number']} #{course['Duration Scale']}
-  if course['admission_requirements'].length
-    h5 Who
-    each val in course['admission_requirements']
-      p #{val} 
+  div(class="mdl-layout mdl-js-layout mdl-layout--fixed-header")
+            header(class="mdl-layout__header")
+                div(class="mdl-layout__header-row")
+                    span(class="mdl-layout-title") #{course['Course Name']}
+                    div.mdl-layout-spacer
+            main.mdl-layout__content
+              div(class="page-content mdl-shadow--2dp mdl-color--grey-50")
+                h5 How
+                p #{course['Study Mode']}
+                h5 Where
+                  if course['Study Place'] == "Online"
+                      p Online
+                  else
+                      p #{course['Campus']}
+                h5 When
+                p Commencing #{course['Semester']}, for #{course['Duration Number']} #{course['Duration Scale']}
+                if course['admission_requirements'].length
+                  h5 Who
+                  each val in course['admission_requirements']
+                    p #{val}
+                a(
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored",
+                  href=tafe_url) See course on TafeSA.edu.au...
  

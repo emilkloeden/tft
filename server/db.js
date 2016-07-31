@@ -4,11 +4,32 @@ var r = require('rethinkdbdash')();
 module.exports = {
 
     top_level: [
-        {"description": "The 'Sciences'", "broad_foes": ["01", "05", "06"], "slug": "sciences"},
-        {"description": "Making things", "broad_foes": ["02", "03","04"], "slug": "making"},
-        {"description": "The Arts and the Great Unknown", "broad_foes": ["09", "10", "12"], "slug": "art"},
-        {"description": "People", "broad_foes": ["07", "08", "11"], "slug": "people"}
+        {
+        "description": "The 'Sciences'", 
+        "broad_foes": ["01", "05", "06"], 
+        "slug": "sciences", 
+        "img":"./images/sciences.png"
+        },
+        {
+        "description": "Making things", 
+        "broad_foes": ["02", "03","04"], 
+        "slug": "making", 
+        "img":"./images/making.jpg"
+        },
+        {
+        "description": "The Arts and the Great Unknown", 
+        "broad_foes": ["09", "10", "12"], 
+        "slug": "art", 
+        "img":"./images/art.jpg"
+        },
+        {
+        "description": "People", 
+        "broad_foes": ["07", "08", "11"], 
+        "slug": "people", 
+        "img":"./images/people.jpg"
+        }
     ],
+
     get_broad_foes_from_slug: function(slug) {
         // Takes a slug from top_level global and returns
         // a function call to get_broad_foes on the broad_foes used
@@ -50,6 +71,13 @@ module.exports = {
             ).run()
             .then(function(result) {
                 console.log(result)
+                var result = result.map(function(instance) {
+                    return {
+                        'code':instance['broad_code'],
+                        'description':instance['broad_description']
+                    }
+                })
+                console.log('MAPPED RESULT:', result)
                 return result 
             })
         )
@@ -59,16 +87,26 @@ module.exports = {
         // Returns a REQL list of narrow FOES
         return(
             r
-            .table('narrow_foes')
-            .filter(r.row("broad_code").eq(broad_code))
-            .pluck({
-                'code':true,
-                'description':true,
-                'id':true
-            })
+            .table('tafe_courses')
+            .filter(
+                r
+                .row('ASCED')('code')
+                .slice(0, 2)
+                .eq(broad_code)
+            )
+            .pluck({'ASCED':true})
+            .distinct()
+            .orderBy(r.row('ASCED')('code'))
             .run()
             .then(function(result) {
                 console.log(result)
+                var result = result.map(function(instance) {
+                    return {
+                        'code':instance['ASCED']['code'],
+                        'description':instance['ASCED']['description']
+                    }
+                })
+                console.log('MAPPED RESULT:', result)
                 return result
             })
         )
@@ -85,6 +123,9 @@ module.exports = {
                             'code':narrow_code
                         }
                 }
+            )
+            .orderBy(
+                'Course Name', 'Campus', 'Study Mode'
             )
             .run()
             .then(function(result) {
@@ -105,6 +146,10 @@ module.exports = {
             .run()
             .then(function(result) {
                 console.log(result)
+                var result = result.map(function(instance){
+                    return {course: instance, tafe_url: instance['URL'] + '.aspx'}
+                })
+                console.log('MAPPED COURSE INFO:', result[0])
                 return result[0]
             })
         )

@@ -2,16 +2,33 @@ extends layout
 
 block content
     if courses.length
-        h3 Try one of these:
-        div.mdl-grid
-        each course, index in courses
-            div(class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp")
-                div.mdl-card__title
-                    a(href="/course/" + course['TAFE_SA_code']) 
-                        h5.mdl-card__title-text #{course['Course Name']}
-                div.mdl-card__supporting-text
-                    p <strong>Study Mode</strong> #{course['Study Mode']}
-                    p <strong>Campus</strong> #{course['Campus']}
+        div(class="mdl-layout mdl-js-layout mdl-layout--fixed-header")
+            header(class="mdl-layout__header")
+                div(class="mdl-layout__header-row")
+                    span(class="mdl-layout-title") Try one of these...
+                    div.mdl-layout-spacer
+            
+            div.mdl-layout__drawer
+                each course in courses
+                    a(href="/course/" + course['TAFE_SA_code']) #{course['Course Name']}
+
+
+            main.mdl-layout__content
+                each course in courses
+                    div(class="mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-tablet mdl-shadow--2dp mdl-color--grey-50") 
+                    
+                        div.mdl-card__title
+                            h5.mdl-card__title-text #{course['Course Name']}
+                            
+                        div.mdl-card__supporting-text
+                            h6 #{course['Campus']}
+                            p <strong>Study Mode</strong> #{course['Study Mode']}
+                        
+                        div(class="mdl-card__actions mdl-card--border")
+                            a(
+                            href="/course/" + course['TAFE_SA_code'],
+                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect") More...
+
     else
         p.
             Oh snap! There are no courses available under this topic

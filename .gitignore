@@ -39,5 +39,6 @@ jspm_packages
 # My ignores
 # iPython Notebooks
 .DS_Store
+views/old/
 
 server/.env

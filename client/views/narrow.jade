@@ -1,11 +1,26 @@
 extends layout
 
 block content
-  p ...maybe just a little further...
-    ul(class="mdl-list")
-    each val, index in narrow
-      li(class="mdl-list__item")
-        span(class="mdl-list__item-primary-content")
-            i(class="material-icons mdl-list__item-icon") launch
-            a(href="./" + val['code']) #{val['description']}
-        
+  div(class="mdl-layout mdl-js-layout mdl-layout--fixed-header")
+    header(class="mdl-layout__header")
+      div(class="mdl-layout__header-row")
+        span(class="mdl-layout-title") Maybe just a little further...
+        div.mdl-layout-spacer
+    
+    div.mdl-layout__drawer
+      each val in narrow
+        h5
+            a(
+            href="/"+ val['code']) #{val['description']}
+
+
+    main.mdl-layout__content
+      each val in narrow
+        div(
+          class="demo-card-short mdl-card mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp mdl-color--grey-50") 
+          
+          
+          div(class="mdl-card__actions mdl-card--border")
+            a(
+              href="/"+ val['code'],
+              class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect") #{val['description']}

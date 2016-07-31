@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(129, 17, 50);
+  text-decoration:none;
 }
+
+.mdl-layout__container {
+  padding:0px;
+  margin: 0px;
+}
+
+.mdl-layout {
+  width: 100%;
+}
+
+.demo-card-short.mdl-card {
+  min-height: 100px;
+}
+
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  /*background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover; */
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+

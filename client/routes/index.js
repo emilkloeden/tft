@@ -5,11 +5,31 @@ var axios = require('axios');
 var API_URL = 'http://localhost:3001/';
 
 var top_level = [
-    {"description": "The 'Sciences'", "broad_foes": ["01", "05", "06"], "slug": "sciences"},
-    {"description": "Making things", "broad_foes": ["02", "03","04"], "slug": "making"},
-    {"description": "The Arts and the Great Unknown", "broad_foes": ["09", "10", "12"], "slug": "art"},
-    {"description": "People", "broad_foes": ["07", "08", "11"], "slug": "people"}
-]
+        {
+        "description": "The 'Sciences'", 
+        "broad_foes": ["01", "05", "06"], 
+        "slug": "sciences", 
+        "img":"./images/sciences.png"
+        },
+        {
+        "description": "Making things", 
+        "broad_foes": ["02", "03","04"], 
+        "slug": "making", 
+        "img":"./images/making.jpg"
+        },
+        {
+        "description": "The Arts and the Great Unknown", 
+        "broad_foes": ["09", "10", "12"], 
+        "slug": "art", 
+        "img":"./images/art.jpg"
+        },
+        {
+        "description": "People", 
+        "broad_foes": ["07", "08", "11"], 
+        "slug": "people", 
+        "img":"./images/people.jpg"
+        }
+    ]
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -56,7 +76,10 @@ router.get('/course/:course', function(req, res, next) {
     .get(url)
     .then(function(result){
       console.log('AXIOS RESPONSE COURSE INFO', result.data)
-      res.render('course', {course: result.data})
+      res.render('course', {
+        course: result.data.course, 
+        tafe_url: result.data.tafe_url
+      })
     })
 })
 
