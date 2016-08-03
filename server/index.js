@@ -2,7 +2,7 @@ var db = require('./db');
 var express = require('express');
 var app = express();
 
-var PORT = 3001;
+var port = process.env.PORT || 3001;
 
 app.use(require('express-json-promise')());
 
@@ -41,7 +41,7 @@ app.get('/:top_level/:broad', function(req, res) {
     res.json(db.get_narrow_foes(broad));
 })
 
-app.listen(PORT, function() {
-  console.log(`Example app listening on port ${PORT}!`)
+app.listen(port,  process.env.PORT ||function() {
+  console.log(`Example app listening on port $ process.env.PORT ||{port}! process.env.PORT ||`)
 })
 

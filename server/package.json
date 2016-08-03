@@ -4,7 +4,10 @@
   "description": "server component of Tinder for TAFE",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "Emil Kloeden <emilkloeden@gmail.com> (https://github.com/emilkloeden/)",
   "license": "ISC",
