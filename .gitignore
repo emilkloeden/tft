@@ -40,5 +40,6 @@ jspm_packages
 # iPython Notebooks
 .DS_Store
 views/old/
+rethinkdb_data/
 
 server/.env

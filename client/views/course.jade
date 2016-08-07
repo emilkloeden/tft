@@ -8,16 +8,18 @@ block content
                     div.mdl-layout-spacer
             main.mdl-layout__content
               div(class="page-content mdl-shadow--2dp mdl-color--grey-50")
-                h5 How
-                p #{course['Study Mode']}
+                if course['Study Mode']
+                  h5 How
+                  p #{course['Study Mode']}
                 h5 Where
                   if course['Study Place'] == "Online"
                       p Online
                   else
                       p #{course['Campus']}
-                h5 When
-                p Commencing #{course['Semester']}, for #{course['Duration Number']} #{course['Duration Scale']}
-                if course['admission_requirements'].length
+                if course['Semester'] && course['Duration Number'] && course['Duration Scale']
+                  h5 When
+                  p Commencing #{course['Semester']}, for #{course['Duration Number']} #{course['Duration Scale']}
+                if course['admission_requirements']
                   h5 Who
                   each val in course['admission_requirements']
                     p #{val}
